@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diriliş: Obanın Kalbi | Alp Yolu</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game-panel">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Sinematik yatay macera</p>
+            <h1>Diriliş: Obanın Kalbi</h1>
+          </div>
+          <div class="actions">
+            <button id="musicBtn" type="button">Müziği Başlat</button>
+            <button id="restartBtn" type="button">Yeniden Başlat</button>
+          </div>
+        </div>
+
+        <div class="hud" aria-label="Oyun durumu">
+          <div><span>Bölüm</span><strong id="level">1/3</strong></div>
+          <div><span>Azık</span><strong id="food">0/6</strong></div>
+          <div><span>Emanet</span><strong id="token">0/4</strong></div>
+          <div><span>İtibar</span><strong id="honor">50</strong></div>
+          <div><span>Dayanıklılık</span><strong id="stamina">100</strong></div>
+          <div><span>Binek</span><strong id="mount">Yaya</strong></div>
+          <div><span>Rozet</span><strong id="badge">Yok</strong></div>
+        </div>
+
+        <div class="play-layout">
+          <div class="stage-wrap">
+            <canvas id="game" width="1100" height="620" aria-label="Obanın Kalbi oyun alanı"></canvas>
+            <div id="overlay" class="overlay">
+              <p class="chapter-kicker" id="chapterKicker">Bölüm 1</p>
+              <h2>Oba Uyanıyor</h2>
+              <p>
+                Sis dağılırken oba senden iz bekliyor. Azığı tamamla, emaneti koru,
+                sözün ağırlığını taşı ve sancağa temiz bir itibarla ulaş.
+              </p>
+              <div id="rewardPanel" class="reward-panel hidden"></div>
+              <button id="startBtn" type="button">Nöbete Başla</button>
+            </div>
+            <div id="quizModal" class="quiz-modal hidden" aria-live="polite">
+              <div class="quiz-card">
+                <span class="panel-label">Emanet Suali</span>
+                <h2 id="quizQuestion">Soru</h2>
+                <div id="quizAnswers" class="quiz-answers"></div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="intel-panel" aria-label="Görev ve taktik paneli">
+            <div class="intel-block">
+              <span class="panel-label">Ana Vazife</span>
+              <strong id="questTitle">Oba Uyanıyor</strong>
+              <p id="questText">Misafire azık götür, küçük çocuğa yardım et, büyüğün sözünü dinle.</p>
+            </div>
+            <div class="intel-block compact">
+              <span class="panel-label">Saha Durumu</span>
+              <div class="readout"><span>Vakit</span><strong id="timeOfDay">Şafak</strong></div>
+              <div class="readout"><span>Rüzgar</span><strong id="wind">Sakin</strong></div>
+              <div class="readout"><span>Tehdit</span><strong id="threat">Taşlı geçit</strong></div>
+            </div>
+            <div class="intel-block">
+              <span class="panel-label">Görev Günlüğü</span>
+              <ul id="objectives" class="objectives"></ul>
+            </div>
+          </aside>
+        </div>
+
+        <div class="message" id="message">
+          Yön tuşları veya A/D ile yürü, Space/W/Yukarı ile zıpla. E ile konuş veya yardım et.
+        </div>
+
+        <div class="mobile-controls" aria-label="Mobil kontroller">
+          <button data-hold="left" type="button">Sol</button>
+          <button data-hold="right" type="button">Sağ</button>
+          <button data-tap="jump" type="button">Zıpla</button>
+          <button data-tap="act" type="button">Yardım</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
