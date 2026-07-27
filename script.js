@@ -1,5 +1,6 @@
 const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
+canvas.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false });
 
 const ui = {
   level: document.querySelector("#level"),
@@ -1245,13 +1246,29 @@ window.addEventListener("keyup", (event) => {
 
 document.querySelectorAll("[data-hold]").forEach((button) => {
   const key = button.dataset.hold === "left" ? "ArrowLeft" : "ArrowRight";
-  button.addEventListener("pointerdown", () => keys.add(key));
-  button.addEventListener("pointerup", () => keys.delete(key));
-  button.addEventListener("pointerleave", () => keys.delete(key));
+  const release = () => keys.delete(key);
+  button.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    button.setPointerCapture?.(event.pointerId);
+    keys.add(key);
+  });
+  button.addEventListener("pointerup", (event) => {
+    event.preventDefault();
+    release();
+  });
+  button.addEventListener("pointercancel", release);
+  button.addEventListener("lostpointercapture", release);
+  button.addEventListener("pointerleave", release);
 });
 
-document.querySelector("[data-tap='jump']").addEventListener("click", jump);
-document.querySelector("[data-tap='act']").addEventListener("click", act);
+document.querySelector("[data-tap='jump']").addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+  jump();
+});
+document.querySelector("[data-tap='act']").addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+  act();
+});
 ui.quizAnswers.addEventListener("click", (event) => {
   const button = event.target.closest("[data-answer]");
   if (!button) return;

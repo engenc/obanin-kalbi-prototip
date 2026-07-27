@@ -38,6 +38,9 @@ button {
   font-weight: 850;
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 button:hover {
@@ -151,6 +154,7 @@ canvas {
   width: 100%;
   aspect-ratio: 1100 / 620;
   background: #82bed4;
+  touch-action: none;
 }
 
 .overlay {
@@ -442,6 +446,7 @@ canvas {
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 0 20px 20px;
+  touch-action: none;
 }
 
 .mobile-controls button {
@@ -463,41 +468,142 @@ canvas {
 }
 
 @media (max-width: 760px) {
+  body {
+    overscroll-behavior: none;
+  }
+
   .shell {
-    width: min(100% - 12px, 1440px);
-    padding-top: 6px;
+    width: 100%;
+    padding: 0 0 104px;
+  }
+
+  .game-panel {
+    min-height: 100svh;
+    border: 0;
+    border-radius: 0;
   }
 
   .topbar {
-    display: block;
-    padding-inline: 12px;
+    gap: 10px;
+    padding: 8px 10px 6px;
   }
 
   .actions {
-    margin-top: 12px;
-    justify-content: flex-start;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .actions button {
+    min-height: 38px;
+    padding-inline: 10px;
+    font-size: 0.84rem;
+  }
+
+  h1 {
+    font-size: 1.38rem;
+    line-height: 1;
+  }
+
+  .eyebrow {
+    margin-bottom: 3px;
+    font-size: 0.64rem;
   }
 
   .hud {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-inline: 12px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 4px 10px 8px;
+    scrollbar-width: none;
+  }
+
+  .hud::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hud div {
+    flex: 0 0 96px;
+    padding: 7px 8px;
+  }
+
+  .hud span {
+    font-size: 0.62rem;
+  }
+
+  .hud strong {
+    font-size: 0.96rem;
   }
 
   .play-layout {
-    padding-inline: 12px;
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  .stage-wrap {
+    border-width: 1px;
+    border-radius: 0;
+  }
+
+  canvas {
+    min-height: 46svh;
+    max-height: 58svh;
+    object-fit: cover;
   }
 
   .intel-panel {
     grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .intel-block {
+    padding: 9px 10px;
+  }
+
+  .intel-block.compact {
+    display: none;
+  }
+
+  .intel-block strong {
+    margin-top: 3px;
+    font-size: 0.96rem;
+  }
+
+  .intel-block p,
+  .objectives li {
+    font-size: 0.86rem;
+    line-height: 1.28;
+  }
+
+  .objectives {
+    gap: 5px;
+    margin-top: 7px;
   }
 
   .message {
-    margin-inline: 12px;
+    min-height: 44px;
+    margin: 8px 8px 10px;
+    padding: 9px 10px;
+    font-size: 0.88rem;
   }
 
   .mobile-controls {
     display: grid;
-    padding-inline: 12px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    gap: 10px;
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(21, 28, 31, 0.4), rgba(15, 19, 20, 0.96));
+    backdrop-filter: blur(10px);
+  }
+
+  .mobile-controls button {
+    min-height: 58px;
+    border-color: rgba(255, 242, 200, 0.28);
+    padding-inline: 6px;
+    font-size: 0.95rem;
   }
 
   .reward-grid {
@@ -508,5 +614,49 @@ canvas {
     width: 78px;
     height: 78px;
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .actions button {
+    min-height: 34px;
+    padding-inline: 8px;
+    font-size: 0.74rem;
+  }
+
+  h1 {
+    font-size: 1.08rem;
+  }
+
+  .hud div {
+    flex-basis: 86px;
+  }
+
+  canvas {
+    min-height: 50svh;
+  }
+
+  .intel-panel {
+    display: none;
+  }
+
+  .overlay {
+    padding: 16px;
+  }
+
+  .overlay h2 {
+    font-size: clamp(1.9rem, 11vw, 3rem);
+  }
+
+  .overlay p {
+    font-size: 0.94rem;
   }
 }
