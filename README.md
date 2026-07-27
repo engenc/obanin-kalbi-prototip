@@ -1,6 +1,6 @@
 # Dirilis: Obanin Kalbi Oyun Prototipi
 
-Turk orf ve adetlerini cocuklara hikaye, gorev, muzik ve secimler yoluyla yasatan kulturel macera oyunu prototipi.
+Örf ve adetlerini cocuklara hikaye, gorev, muzik ve secimler yoluyla yasatan kulturel macera oyunu prototipi.
 
 ## Icerik
 
